@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 python -m uvicorn app.main:app --reload
 
-  Swagger UI: `http://127.0.0.1:8000/docs`
+- Swagger UI: `http://127.0.0.1:8000/docs`
 
 ## Заполнение базы тестовыми данными
 
@@ -30,9 +30,9 @@ python scripts/fill_data.py
 
 ## Доступные endpoint’ы
 
-  /books** (GET, POST) — книги с сортировкой `sort_by=id|title|year|rating`  
-  /users** (POST) — добавление пользователя  
-  /loans** (POST) — создание выдачи  
-  /loans/with-users** (GET) — JOIN выдач с пользователями и книгами  
-  /books/category-count** (GET) — GROUP BY по категориям  
-  /books/update-rating** (PUT) — обновление рейтинга всех книг автора
+- **/books** (GET, POST) — книги с сортировкой `sort_by=id|title|year|rating`  
+- **/users** (POST) — добавление пользователя  
+- **/loans** (POST) — создание выдачи  
+- **/loans/with-users** (GET) — JOIN выдач с пользователями и книгами  
+- **/books/category-count** (GET) — GROUP BY по категориям  
+- **/books/update-rating** (PUT) — обновление рейтинга всех книг автора
