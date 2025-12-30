@@ -63,3 +63,11 @@ def books_group_by_category(db: Session = Depends(get_db)):
     ).group_by(models.Book.category).all()
 
     return JSONResponse(content=[{"category": r.category, "count": r.count} for r in results])
+
+@app.put("/books/update-rating")
+def update_books_rating(author: str, db: Session = Depends(get_db)):
+    books = db.query(models.Book).filter(models.Book.author == author).all()
+    for b in books:
+        b.rating = (b.rating or 0) + 1
+    db.commit()
+    return {"updated": len(books)}
