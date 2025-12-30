@@ -24,8 +24,11 @@ def create_book(book: dict, db: Session = Depends(get_db)):
     return obj
 
 @app.get("/books")
-def get_books(limit: int = 10, offset: int = 0, db: Session = Depends(get_db)):
-    return db.query(models.Book).limit(limit).offset(offset).all()
+def get_books(limit: int = 10, offset: int = 0, sort_by: str = "id", db: Session = Depends(get_db)):
+    if sort_by not in ["id", "title", "year", "rating"]:
+        sort_by = "id"
+    return db.query(models.Book).order_by(getattr(models.Book, sort_by)).limit(limit).offset(offset).all()
+
 
 @app.post("/users")
 def create_user(user: dict, db: Session = Depends(get_db)):
